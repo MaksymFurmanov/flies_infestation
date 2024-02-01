@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".Menu"
+                                                   android:background="@drawable/fliesbackground">
+
+    <TextView
+        android:id="@+id/main_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="201dp"
+        android:fontFamily="monospace"
+        android:shadowColor="#FFFFFF"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="10"
+        android:text="Flies Infestation"
+        android:textAlignment="center"
+        android:textColor="#040000"
+        android:textSize="60sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-1dp" />
+
+    <Button
+        android:id="@+id/to_log_in"
+        android:layout_width="269dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="76dp"
+        android:background="@color/btn_purple"
+        android:padding="10dp"
+        android:text="Log In"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/to_sign_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/to_sign_up"
+        android:layout_width="240dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="156dp"
+        android:background="@color/btn_purple"
+        android:text="Create account"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/google_button"
+        android:layout_width="269dp"
+        android:layout_height="57dp"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="16dp"
+        android:text="Text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/to_sign_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!--
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebook_button"
+            android:layout_width="143dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            tools:layout_editor_absoluteX="198dp"
+            tools:layout_editor_absoluteY="460dp" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "701408179397",
+    "firebase_url": "https://flies-infestation-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "flies-infestation",
+    "storage_bucket": "flies-infestation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701408179397:android:4f013fe6a005c4889d2cac",
+        "android_client_info": {
+          "package_name": "sk.tuke.vmir.fliesinfestation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "701408179397-016m2bkhlnfvh05cbs5oms180h4vesq5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sk.tuke.vmir.fliesinfestation",
+            "certificate_hash": "6b361b35676403a8efeb485af1f857ebb3971673"
+          }
+        },
+        {
+          "client_id": "701408179397-lkt7ksgg4as9fm5togf0div69hlh0g17.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcXrax55m-UlRjHsCxM50_BPk0FJbWrXk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "701408179397-lkt7ksgg4as9fm5togf0div69hlh0g17.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

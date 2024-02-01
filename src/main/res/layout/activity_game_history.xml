@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".GameHistory"
+        android:background="@drawable/fliesbackground">
+
+
+    <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/btn_purple"
+            android:shadowColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp">
+
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/baseline_arrow_back_24"
+                android:id="@+id/history_to_main"
+                tools:layout_editor_absoluteY="3dp"
+                tools:layout_editor_absoluteX="6dp"
+                />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="312dp"
+            android:layout_height="600dp"
+            android:background="#255727"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="104dp"
+            android:id="@+id/recycler_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"/>
+
+    <TextView
+            android:text="Game History"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textSize="34sp"
+            android:typeface="monospace"
+            android:textStyle="bold"
+            android:shadowColor="#FFFFFF"
+            android:shadowRadius="4"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="32dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
