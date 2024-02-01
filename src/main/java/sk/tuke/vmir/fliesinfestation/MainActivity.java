@@ -56,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         client = GoogleSignIn.getClient(this, options);
 
-        googleAuth.setOnClickListener(v -> {
-            googleSignIn();
-        });
+        googleAuth.setOnClickListener(v -> googleSignIn());
     }
 
     private void googleSignIn() {

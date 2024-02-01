@@ -22,16 +22,15 @@
         android:textAlignment="center"
         android:textColor="#040000"
         android:textSize="60sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-1dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/to_log_in"
         android:layout_width="269dp"
         android:layout_height="62dp"
-        android:layout_marginStart="71dp"
-        android:layout_marginEnd="71dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="80dp"
         android:background="@color/btn_purple"
         android:padding="10dp"
         android:text="Log In"
@@ -39,22 +38,19 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/to_sign_up"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/to_sign_up"
         android:layout_width="240dp"
         android:layout_height="49dp"
-        android:layout_marginStart="85dp"
-        android:layout_marginEnd="86dp"
-        android:layout_marginBottom="156dp"
+        android:layout_marginBottom="152dp"
         android:background="@color/btn_purple"
         android:text="Create account"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.gms.common.SignInButton
@@ -69,14 +65,5 @@
         app:layout_constraintBottom_toTopOf="@+id/to_sign_up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <!--
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/facebook_button"
-            android:layout_width="143dp"
-            android:layout_height="38dp"
-            android:layout_gravity="center_horizontal"
-            tools:layout_editor_absoluteX="198dp"
-            tools:layout_editor_absoluteY="460dp" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

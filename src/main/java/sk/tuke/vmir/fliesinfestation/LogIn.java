@@ -30,15 +30,24 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void signIn() {
-        mAuth.signInWithEmailAndPassword(email_input.getText().toString(), password_input.getText().toString())
-                .addOnCompleteListener(this, task -> {
-                            if (task.isSuccessful()) {
-                                startActivity(new Intent(LogIn.this, Menu.class));
-                            } else {
-                                Toast.makeText(LogIn.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
+        if (!email_input.getText().toString().trim().isEmpty()
+                && !password_input.getText().toString().trim().isEmpty()
+                && email_input.getText() != null
+                && password_input.getText() != null) {
+            mAuth.signInWithEmailAndPassword(email_input.getText().toString(),
+                            password_input.getText().toString())
+                    .addOnCompleteListener(this, task -> {
+                                if (task.isSuccessful()) {
+                                    startActivity(new Intent(LogIn.this, Menu.class));
+                                } else {
+                                    Toast.makeText(LogIn.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
-                );
+                    );
+        } else {
+            Toast.makeText(LogIn.this, "You need to enter email and password",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }

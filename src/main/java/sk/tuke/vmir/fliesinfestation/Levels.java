@@ -8,14 +8,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.concurrent.atomic.AtomicReference;
+interface CustomImagesCheckListener {
+    void onShowedImageCheck(boolean isCustom);
+
+    void onCrushedImageCheck(boolean isCrushed);
+}
 
 public class Levels extends AppCompatActivity {
     TextView customImageStatus;
@@ -43,13 +51,45 @@ public class Levels extends AppCompatActivity {
         MaterialButton mosquitoes = findViewById(R.id.mosquitoes_btn);
         MaterialButton custom = findViewById(R.id.custom_btn);
 
-        boolean isCustom = checkCustomImages();
-
         customImageStatus = findViewById(R.id.custom_status);
         customImageStatus.setOnClickListener(view -> {
-            startActivity(new Intent(this, CustomPictures.class));
+            startActivity(new Intent(Levels.this, CustomPictures.class));
         });
-        if(isCustom)customImageStatus.setText("CHANGE IMAGES");
+
+        checkCustomImages(new CustomImagesCheckListener() {
+            private boolean isCustom = false;
+            private boolean isCrushed = false;
+
+            @Override
+            public void onShowedImageCheck(boolean customResult) {
+                isCustom = customResult;
+                updateCustomImageStatus();
+            }
+
+            @Override
+            public void onCrushedImageCheck(boolean crushedResult) {
+                isCrushed = crushedResult;
+                updateCustomImageStatus();
+            }
+
+            private void updateCustomImageStatus() {
+                customImageStatus.post(() -> {
+                    if (isCustom && isCrushed) {
+                        customImageStatus.setText("CHANGE IMAGES");
+                    } else {
+                        customImageStatus.setText("SET IMAGES");
+                    }
+                });
+            }
+        });
+
+        custom.setOnClickListener(view -> {
+            custom.setStrokeWidth(getResources().getDimensionPixelSize(R.dimen.stroke_width));
+            mosquitoes.setStrokeWidth(getResources().getDimensionPixelSize(R.dimen.no_width));
+            flies.setStrokeWidth(getResources().getDimensionPixelSize(R.dimen.no_width));
+
+            imageType = "custom";
+        });
 
         flies.setOnClickListener(view -> {
             flies.setStrokeWidth(getResources().getDimensionPixelSize(R.dimen.stroke_width));
@@ -67,18 +107,6 @@ public class Levels extends AppCompatActivity {
 
             imageType = "mosquito";
         });
-
-        custom.setOnClickListener(view -> {
-            if(!isCustom){
-                startActivity(new Intent(this, CustomPictures.class));
-            } else {
-                custom.setStrokeWidth(getResources().getDimensionPixelSize(R.dimen.stroke_width));
-                mosquitoes.setStrokeWidth(getResources().getDimensionPixelSize(R.dimen.no_width));
-                flies.setStrokeWidth(getResources().getDimensionPixelSize(R.dimen.no_width));
-
-                imageType = "custom";
-            }
-        });
     }
 
     protected void start(int level) {
@@ -95,12 +123,13 @@ public class Levels extends AppCompatActivity {
         }
 
         intent.putExtra("imageType", imageType);
-
-        startActivity(intent);
+        if(!imageType.equals("custom") || customImageStatus.getText().equals("CHANGE IMAGES"))
+            startActivity(intent);
+        else Toast.makeText(Levels.this, "Custom images aren't set",
+                    Toast.LENGTH_LONG).show();
     }
 
-    protected boolean checkCustomImages() {
-        AtomicReference<Boolean> result = new AtomicReference<>(true);
+    protected void checkCustomImages(CustomImagesCheckListener listener) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         StorageReference refCustomPic = FirebaseStorage.getInstance().getReference()
@@ -108,13 +137,22 @@ public class Levels extends AppCompatActivity {
         StorageReference refCrushedPic = FirebaseStorage.getInstance().getReference()
                 .child("users").child(user.getUid()).child("crushed");
 
-        refCustomPic.getDownloadUrl().addOnFailureListener(res -> {
-            result.set(false);
-        });
-        refCrushedPic.getDownloadUrl().addOnFailureListener(res -> {
-            result.set(false);
+        Task<StorageMetadata> customTask = refCustomPic.getMetadata().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                listener.onShowedImageCheck(task.getResult() != null);
+            } else {
+                listener.onShowedImageCheck(false);
+            }
         });
 
-        return result.get();
+        Task<StorageMetadata> crushedTask = refCrushedPic.getMetadata().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                listener.onCrushedImageCheck(task.getResult() != null);
+            } else {
+                listener.onCrushedImageCheck(false);
+            }
+        });
+
+        Tasks.whenAllComplete(customTask, crushedTask);
     }
 }

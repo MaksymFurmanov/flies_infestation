@@ -16,7 +16,6 @@ import java.util.Objects;
 public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
 
     private EditText email_input;
     private EditText password_input;
@@ -35,17 +34,25 @@ public class SignUp extends AppCompatActivity {
     }
 
     private void signUp() {
-        mAuth.createUserWithEmailAndPassword(email_input.getText().toString(),
-                        password_input.getText().toString())
-                .addOnCompleteListener(this, task -> {
-                            if (task.isSuccessful()) {
-                                startActivity(new Intent(SignUp.this, MoreUserInfo.class));
-                            } else {
-                                Toast.makeText(SignUp.this, "Authentication failed. "
-                                                + task.getException().getMessage(),
-                                        Toast.LENGTH_LONG).show();
+        if (!email_input.getText().toString().trim().isEmpty()
+                && !password_input.getText().toString().trim().isEmpty()
+                && email_input.getText() != null
+                && password_input.getText() != null) {
+            mAuth.createUserWithEmailAndPassword(email_input.getText().toString(),
+                            password_input.getText().toString())
+                    .addOnCompleteListener(this, task -> {
+                                if (task.isSuccessful()) {
+                                    startActivity(new Intent(SignUp.this, MoreUserInfo.class));
+                                } else {
+                                    Toast.makeText(SignUp.this, "Authentication failed. "
+                                                    + task.getException().getMessage(),
+                                            Toast.LENGTH_LONG).show();
+                                }
                             }
-                        }
-                );
+                    );
+        } else {
+            Toast.makeText(SignUp.this, "You need to enter email and password",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }

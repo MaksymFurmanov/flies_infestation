@@ -1,42 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/fliesbackground">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fliesbackground">
 
     <Button
-            android:text="Start"
-            android:layout_width="150dp"
-            android:layout_height="61dp"
-            android:id="@+id/start_button"
-            android:insetBottom="6dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="137dp"
-            android:layout_marginTop="500dp"
-            android:background="@color/btn_purple"
-            android:textColor="#000000"
-            android:textSize="20sp"/>
+        android:id="@+id/start_button"
+        android:layout_width="150dp"
+        android:layout_height="61dp"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:layout_marginTop="428dp"
+        android:background="@color/btn_purple"
+        android:insetBottom="6dp"
+        android:text="Start"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-            android:text="Game history"
-            android:layout_width="150dp"
-            android:layout_height="70dp"
-            android:id="@+id/history_button"
-            android:insetBottom="6dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="137dp"
-            android:layout_marginTop="600dp"
-            android:background="@color/btn_purple"
-            android:textColor="#000000"
-            android:textSize="20sp"/>
+        android:id="@+id/history_button"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="528dp"
+        android:background="@color/btn_purple"
+        android:insetBottom="6dp"
+        android:text="Game history"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="-1dp"
+        android:layout_marginTop="216dp"
         android:fontFamily="monospace"
         android:shadowColor="#FFFFFF"
         android:shadowDx="1"
@@ -45,19 +52,23 @@
         android:text="Flies Infestation"
         android:textAlignment="center"
         android:textColor="#040000"
-        android:textSize="60sp" />
+        android:textSize="60sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-33dp" />
 
     <TextView
         android:id="@+id/display_username"
         android:layout_width="267dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:layout_toEndOf="@+id/sign_out_btn"
         android:text="Username"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/sign_out_btn"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/sign_out_btn"
@@ -66,7 +77,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:text="Sign Out"
-        android:textColor="#000000" />
-</RelativeLayout>
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
